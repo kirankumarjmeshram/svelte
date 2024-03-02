@@ -4,7 +4,8 @@
 	function addNumber() {
 		// numbers.push(numbers.length + 1);
 		// numbers = numbers
-		numbers = [... numbers, numbers.length+1]
+		// numbers = [... numbers, numbers.length+1]
+        numbers[numbers.length] = numbers.length+1;
 	}
 
 	$: sum = numbers.reduce((total, currentNumber) => total + currentNumber, 0);
@@ -14,4 +15,4 @@
 
 <button on:click={addNumber}>
 	Add a number
-</button>
+</button> 
