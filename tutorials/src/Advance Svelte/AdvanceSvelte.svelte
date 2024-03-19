@@ -5,6 +5,7 @@ import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
   import Dimensions from "./Advance Binding/Dimensions.svelte";
   import EachBlockBinding from "./Advance Binding/EachBlockBinding.svelte";
   import MediaElement from "./Advance Binding/Media Element/MediaElement.svelte";
+  import This from "./Advance Binding/This/This.svelte";
 import AnimateDirective from "./Animation/AnimateDirective.svelte";
 import Spring from "./Motion/Spring.svelte";
 import Tweens from "./Motion/Tweens.svelte";
@@ -55,3 +56,5 @@ import Tweens from "./Motion/Tweens.svelte";
 <MediaElement/>
 <h2>Dimensions</h2>
 <Dimensions/>
+<h2>This</h2>
+<!-- <This/> -->
