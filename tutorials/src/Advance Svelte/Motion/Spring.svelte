@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { spring } from 'svelte/motion';
 
 	let coords = spring({ x: 50, y: 50 }, {
@@ -72,4 +72,4 @@
 	.controls input {
 		width: 100%;
 	}
-</style>
+</style> -->
