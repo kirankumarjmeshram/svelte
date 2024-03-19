@@ -1,3 +1,7 @@
+```
+
+```
+
 # svelte
 
     Use degit
@@ -21,3 +25,16 @@
     **Runtime vs compile time in JS React and Svelte**
         The main difference between JS React and Svelte is that [React uses a virtual DOM at runtime, while Svelte compiles components down to efficient JavaScript code during build time.]() This fundamental difference has a significant impact on performance. Svelte's compile-time optimization eliminates the need for a virtual DOM, which leads to smaller bundle sizes and faster rendering.
 
+### **Actions**
+
+**Actions are essentially element-level lifecycle functions. They're useful for things like:**
+	interfacing with third-party libraries
+   	lazy-loaded images
+    tooltips
+    adding custom event handlers
+
+---
+
+
+
+---

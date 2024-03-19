@@ -1,5 +1,7 @@
 <script>
-    import Spring from "./Motion/Spring.svelte";
+    import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
+import AnimateDirective from "./Animation/AnimateDirective.svelte";
+import Spring from "./Motion/Spring.svelte";
 import Tweens from "./Motion/Tweens.svelte";
   import CustomCssTransation from "./transitions/CustomCssTransation.svelte";
   import CustomJsTransaction from "./transitions/CustomJSTransaction.svelte";
@@ -31,3 +33,7 @@ import Tweens from "./Motion/Tweens.svelte";
 <KeyBlock/>
 <h2>Differed Transaction</h2>
 <DifferedTransaction/>
+<h2>Animation "animate directives"</h2>
+<AnimateDirective/>
+<h2>(Canvas) Use Directives</h2>
+<!-- <Usedirective/> -->
