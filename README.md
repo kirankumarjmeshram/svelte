@@ -33,8 +33,38 @@
     tooltips
     adding custom event handlers
 
----
+### **Advance Bindinng**
 
+**Content Editable Binding**
 
+```
+    <script>
+   	let html = '<p>Write some text!</p>';
+    </script>
+    <!-- ContentEditableBinding -->
+    <div bind:innerHTML={html} contenteditable />
 
----
+    <pre>{html}</pre>
+```
+
+**Each Block Binding**
+
+```
+<ul class="todos">
+		{#each todos as todo}
+			<li class:done={todo.done}>
+				<input
+					type="checkbox"
+					bind:checked={todo.done}
+				/>
+
+				<input
+					type="text"
+					placeholder="What needs to be done?"
+					bind:value={todo.text}
+				/>
+			</li>
+		{/each}
+	</ul>
+
+```

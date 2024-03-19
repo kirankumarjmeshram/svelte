@@ -2,6 +2,8 @@
     import AddingParameter from "./Actions/AddingParameter.svelte";
 import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
   import ContentEditableBinding from "./Advance Binding/ContentEditableBinding.svelte";
+  import EachBlockBinding from "./Advance Binding/EachBlockBinding.svelte";
+  import MediaElement from "./Advance Binding/Media Element/MediaElement.svelte";
 import AnimateDirective from "./Animation/AnimateDirective.svelte";
 import Spring from "./Motion/Spring.svelte";
 import Tweens from "./Motion/Tweens.svelte";
@@ -46,4 +48,7 @@ import Tweens from "./Motion/Tweens.svelte";
 <h1>ADVANCE BINDING</h1>
 <h2>Content Editable Binding</h2>
 <ContentEditableBinding/>
-
+<h2>Each block Binding</h2>
+<EachBlockBinding/>
+<h2>Media Element</h2>
+<MediaElement/>
