@@ -1,6 +1,7 @@
 <script>
     import AddingParameter from "./Actions/AddingParameter.svelte";
 import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
+  import ComponentBinding from "./Advance Binding/Component binding/ComponentBinding.svelte";
   import ContentEditableBinding from "./Advance Binding/ContentEditableBinding.svelte";
   import Dimensions from "./Advance Binding/Dimensions.svelte";
   import EachBlockBinding from "./Advance Binding/EachBlockBinding.svelte";
@@ -58,3 +59,5 @@ import Tweens from "./Motion/Tweens.svelte";
 <Dimensions/>
 <h2>This</h2>
 <!-- <This/> -->
+<h2>Component Binding</h2>
+<ComponentBinding/>

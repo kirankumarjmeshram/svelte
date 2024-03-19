@@ -4,7 +4,7 @@
 	let canvas;
 
 	onMount(() => {
-		const canvas = document.querySelector('canvas')
+		// const canvas = document.querySelector('canvas')
 		const context = canvas.getContext('2d');
 
 		let frame = requestAnimationFrame(function loop(t) {
