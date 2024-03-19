@@ -1,5 +1,7 @@
 <script>
-    import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
+    import AddingParameter from "./Actions/AddingParameter.svelte";
+import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
+  import ContentEditableBinding from "./Advance Binding/ContentEditableBinding.svelte";
 import AnimateDirective from "./Animation/AnimateDirective.svelte";
 import Spring from "./Motion/Spring.svelte";
 import Tweens from "./Motion/Tweens.svelte";
@@ -35,5 +37,13 @@ import Tweens from "./Motion/Tweens.svelte";
 <DifferedTransaction/>
 <h2>Animation "animate directives"</h2>
 <AnimateDirective/>
+<h1>Actions</h1>
 <h2>(Canvas) Use Directives</h2>
 <!-- <Usedirective/> -->
+<h2>Adding Parameters</h2>
+<AddingParameter/>
+
+<h1>ADVANCE BINDING</h1>
+<h2>Content Editable Binding</h2>
+<ContentEditableBinding/>
+
