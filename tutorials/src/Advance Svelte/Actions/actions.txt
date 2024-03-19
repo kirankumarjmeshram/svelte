@@ -1,0 +1,5 @@
+Actions are essentially element-level lifecycle functions. They're useful for things like:
+    interfacing with third-party libraries
+    lazy-loaded images
+    tooltips
+    adding custom event handlers
