@@ -68,3 +68,18 @@
 	</ul>
 
 ```
+
+**Media Binding**
+    You can bind to properties of <audio> and <video> elements, making it easy to (for example) build custom player UI,
+    ```
+	<audio
+            {src}
+            bind:currentTime={time}
+            bind:duration
+            bind:paused
+            preload="metadata"
+            on:ended={() => {
+                time = 0;
+		    }}
+	    />
+    ```

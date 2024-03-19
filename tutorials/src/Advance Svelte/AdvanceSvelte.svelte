@@ -2,6 +2,7 @@
     import AddingParameter from "./Actions/AddingParameter.svelte";
 import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
   import ContentEditableBinding from "./Advance Binding/ContentEditableBinding.svelte";
+  import Dimensions from "./Advance Binding/Dimensions.svelte";
   import EachBlockBinding from "./Advance Binding/EachBlockBinding.svelte";
   import MediaElement from "./Advance Binding/Media Element/MediaElement.svelte";
 import AnimateDirective from "./Animation/AnimateDirective.svelte";
@@ -52,3 +53,5 @@ import Tweens from "./Motion/Tweens.svelte";
 <EachBlockBinding/>
 <h2>Media Element</h2>
 <MediaElement/>
+<h2>Dimensions</h2>
+<Dimensions/>
