@@ -1,13 +1,13 @@
 <script>
     import AddingParameter from "./Actions/AddingParameter.svelte";
-import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
-  import BindingToComponentInstance from "./Advance Binding/Binding to Component Instance/BindingToComponentInstance.svelte";
+// import Usedirective from "./Actions/The Use Directive/Usedirective.svelte";
+  // import BindingToComponentInstance from "./Advance Binding/Binding to Component Instance/BindingToComponentInstance.svelte";
   import ComponentBinding from "./Advance Binding/Component binding/ComponentBinding.svelte";
   import ContentEditableBinding from "./Advance Binding/ContentEditableBinding.svelte";
   import Dimensions from "./Advance Binding/Dimensions.svelte";
   import EachBlockBinding from "./Advance Binding/EachBlockBinding.svelte";
   import MediaElement from "./Advance Binding/Media Element/MediaElement.svelte";
-  import This from "./Advance Binding/This/This.svelte";
+  // import This from "./Advance Binding/This/This.svelte";
 import AnimateDirective from "./Animation/AnimateDirective.svelte";
 import Spring from "./Motion/Spring.svelte";
 import Tweens from "./Motion/Tweens.svelte";
@@ -63,4 +63,4 @@ import Tweens from "./Motion/Tweens.svelte";
 <h2>Component Binding</h2>
 <ComponentBinding/>
 <h2>Binding To The Component Instance</h2>
-<BindingToComponentInstance/>
+<!-- <BindingToComponentInstance/> -->
