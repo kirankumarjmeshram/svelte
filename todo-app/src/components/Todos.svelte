@@ -2,6 +2,9 @@
     export let todos = [];
     let totalTodos = todos.length;
     let completedTodos = todos.filter((todo)=> todo.completed).length;
+    function removeTodo (todo) {
+      todos = todos.filter((t)=>t.id !== todo.id)
+    }
 </script>
 
 <!-- Todos.svelte -->
@@ -61,14 +64,16 @@
             <input
               type="checkbox"
               id="todo-{todo.id}"
-              checked={todo.completed} />
+              checked={todo.completed}
+              on:click={() => todo.completed = !todo.completed} />
             <label for="todo-{todo.id}" class="todo-label"> {todo.name} </label>
           </div>
           <div class="btn-group">
             <button type="button" class="btn">
               Edit <span class="visually-hidden">{todo.name}</span>
             </button>
-            <button type="button" class="btn btn__danger">
+            <button type="button" class="btn btn__danger"
+            on:click={() => removeTodo(todo)}>
               Delete <span class="visually-hidden">{todo.name}</span>
             </button>
           </div>
