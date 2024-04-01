@@ -1,24 +1,42 @@
 <script>
+  import App from "../App.svelte";
+
     export let todos = [];
     // We can tell Svelte that we want our totalTodos and completedTodos variables to be reactive by prefixing them with $:. 
     // Svelte will generate the code to automatically update them whenever data they depend on is changed.
     $: totalTodos = todos.length;
     $: completedTodos = todos.filter((todo)=> todo.completed).length;
+    let newTodoName = "";
+    // $: console.log(newTodoName)
+    let newTodoId;
+    $: {
+      if(totalTodos === 0){
+        newTodoId = 1
+      }else{
+        newTodoId = Math.max(... todos.map((t)=> t.id))+1;
+      }
+    }
     function removeTodo (todo) {
       todos = todos.filter((t)=>t.id !== todo.id)
+    }
+
+    function addTodo () {
+      todos = [...todos,{id: newTodoId, name: newTodoName, completed: false}];
+      newTodoName = '';
     }
 </script>
 
 <!-- Todos.svelte -->
 <div class="todoapp stack-large">
     <h1>Svelte To-Do list</h1>
-    <img height="32" width="88" src="https://www.w3.org/WAI/wcag2A" />
+    <!-- <img height="32" width="88" src="https://www.w3.org/WAI/wcag2A" /> -->
     <!-- NewTodo -->
-    <form>
+    <form on:submit|preventDefault={addTodo}>
       <h2 class="label-wrapper">
         <label for="todo-0" class="label__lg"> What needs to be done? </label>
       </h2>
-      <input type="text" id="todo-0" autocomplete="off" class="input input__lg" />
+      <!-- <input value = {newTodoName} on:keydown={(e)=>newTodoName = e.target.value} type="text" id="todo-0" autocomplete="off" class="input input__lg" /> -->
+      <input bind:value = {newTodoName} type="text" id="todo-0" autocomplete="off" class="input input__lg" />
       <button type="submit" disabled="" class="btn btn__primary btn__lg">
         Add
       </button>
