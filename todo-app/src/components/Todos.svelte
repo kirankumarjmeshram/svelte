@@ -1,7 +1,9 @@
 <script>
     export let todos = [];
-    let totalTodos = todos.length;
-    let completedTodos = todos.filter((todo)=> todo.completed).length;
+    // We can tell Svelte that we want our totalTodos and completedTodos variables to be reactive by prefixing them with $:. 
+    // Svelte will generate the code to automatically update them whenever data they depend on is changed.
+    $: totalTodos = todos.length;
+    $: completedTodos = todos.filter((todo)=> todo.completed).length;
     function removeTodo (todo) {
       todos = todos.filter((t)=>t.id !== todo.id)
     }
