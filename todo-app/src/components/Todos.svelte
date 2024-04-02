@@ -29,6 +29,11 @@
     function filterTodos (filter, todos) {
       return filter === 'active' ? todos.filter((t) => !t.completed):filter==='completed'?todos.filter((t)=>t.completed):todos;
     }
+
+    function updatedTodo(todo) {
+      const i = todos.findIndex((t) => t.id === todo.id);
+      todos[i] = {...todos[i], ...todo};
+    }
 </script>
 
 <!-- Todos.svelte -->
@@ -71,7 +76,7 @@
         <!-- dispatch('remove', todo) we are emitting a remove event, and passing as additional data the todo being deleted. 
           The handler will be called with an event object available, 
           with the additional data available in the event.detail property. -->
-        <Todo {todo} on:remove={(e)=> removeTodo(e.detail)}/>
+        <Todo {todo} on:update={(e)=> updatedTodo(e.detail)} on:remove={(e)=> removeTodo(e.detail)}/>
       </li>
       {:else}
       <li>Nothing to do here!</li>
