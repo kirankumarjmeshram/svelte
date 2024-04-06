@@ -28,11 +28,20 @@
 </div>
 
 <style>
+  html, body, .dashboard {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
   .dashboard {
     display: flex;
     flex-direction: column;
     width: 85%;
+    height: 100%;
     padding: 1rem;
+    overflow: hidden; /* Prevent content from overflowing */
   }
 
   .header {
@@ -58,38 +67,34 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(9, 1fr);
     gap: 1rem;
+    height: 100%; /* Ensure content takes up full height */
+    overflow: hidden; /* Prevent content from overflowing */
   }
 
-
   .basicStacts {
-    grid-column: span 4; /* Width 50% */
-    grid-row: span 4;    /* Height 40% */
-    height: 40%;
-    width: 50%;
-    border: 2px solid red; /* Red border */
+    grid-column: span 3;
+    grid-row: span 4;
+    border: 2px solid red;
   }
 
   .DealsAndRev {
-    grid-column: span 4; /* Width 50% */
-    grid-row: span 4;    /* Height 40% */
-    height: 40%;
-    width: 50%;
-    border: 2px solid red; /* Red border */
+    grid-column: span 5;
+    grid-row: span 4;
+    border: 2px solid red;
   }
 
   .CampaignPerfo {
-    grid-column: span 4; /* Width 60% */
-    grid-row: span 5;    /* Height 50% */
-    height: 50%;
-    width: 60%;
-    border: 2px solid red; /* Red border */
+    grid-column: span 5;
+    grid-row: span 4;
+    border: 2px solid red;
   }
 
   .TopRevCh {
-    grid-column: span 4; /* Width 40% */
-    grid-row: span 3;    /* Height 50% */
-    height: 50%;
-    width: 40%;
-    border: 2px solid red; /* Red border */
+    grid-column: span 3;
+    grid-row: span 4;
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

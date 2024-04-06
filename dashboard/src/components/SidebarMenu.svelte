@@ -12,6 +12,7 @@
 </script>
   
 <div class="sidebar">
+  <h2>UNIFYDATA</h2>
   <ul>
     <li class="sidebar_el"><a on:click={selectComponent.bind(this, 'Dashboard')}>Dashboard</a></li>
     <li class="sidebar_el"><a on:click={selectComponent.bind(this, 'RevenueAnalytics')}>Revenue Analytics</a></li>
