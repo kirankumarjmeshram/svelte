@@ -76,6 +76,8 @@
   .main-content {
     flex: 1;
     padding: 1rem;
+    background-color: rgb(42, 48, 61);
+    color: white;
     /* Add other styles for the main content area */
   }
 </style>

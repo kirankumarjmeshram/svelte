@@ -120,41 +120,24 @@
     import { onMount } from 'svelte';
     import Chart from 'chart.js/auto';
   
-    const Utils = {
-      months: ({ count }) => {
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        return months.slice(0, count);
-      },
-      numbers: ({ count, min, max }) => {
-        const result = [];
-        for (let i = 0; i < count; i++) {
-          result.push(Math.floor(Math.random() * (max - min + 1)) + min);
-        }
-        return result;
-      },
-      transparentize: (color, opacity) => {
-        const alpha = Math.round(opacity * 255);
-        return `${color}${alpha.toString(16).toUpperCase()}`;
-      },
-    };
-  
-    const DATA_COUNT = 7;
-    const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-  
-    const labels = Utils.months({ count: 7 });
+    const NUMBER_SALES = [2,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1]
+    const NUMBER_REVENUE = [200, 250, 500, 450, 300, 250, 500, 450, 300, 250, 500, 450, 300, 250, 500, 450, 300];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const labels = months.slice(0, Math.max(NUMBER_REVENUE.length, NUMBER_SALES.length));
     const data = {
       labels: labels,
       datasets: [
         {
           label: 'Sales',
-          data: Utils.numbers(NUMBER_CFG),
+          // data: Utils.numbers(NUMBER_SALES),
+          data: NUMBER_SALES,
           borderColor: 'rgb(255, 99, 132)',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
           yAxisID: 'y-axis-1'
         },
         {
           label: 'Revenue',
-          data: Utils.numbers(NUMBER_CFG),
+          data: NUMBER_REVENUE,
           borderColor: 'rgb(54, 162, 235)',
           backgroundColor: 'rgba(54, 162, 235, 0.5)',
           yAxisID: 'y-axis-2'

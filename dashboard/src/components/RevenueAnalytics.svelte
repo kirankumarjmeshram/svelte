@@ -1,1 +1,1 @@
-RevenueAnalytics.svelte
+<h1>RevenueAnalytics</h1>
