@@ -51,10 +51,14 @@
         plugins: {
           legend: {
             position: 'bottom',
+            labels: {
+              color: '#fff'
+            }
           },
           title: {
             display: true,
-            text: 'Top Revenue Channels'
+            text: 'Top Revenue Channels',
+            color: '#fff'
           }
         }
       },

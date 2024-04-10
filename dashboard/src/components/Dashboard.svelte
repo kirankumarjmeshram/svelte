@@ -1,8 +1,8 @@
 <script>
-  import BasicStacts from './Dashboard/BasicStacts.svelte';
-  import DealsAndRev from './Dashboard/DealsAndRev.svelte';
-  import CampaignPerfo from './Dashboard/CampaignPerfo.svelte';
-  import TopRevCh from './Dashboard/TopRevCh.svelte';
+  import BasicStacts from "./Dashboard/BasicStacts.svelte";
+  import DealsAndRev from "./Dashboard/DealsAndRev.svelte";
+  import CampaignPerfo from "./Dashboard/CampaignPerfo.svelte";
+  import TopRevCh from "./Dashboard/TopRevCh.svelte";
 </script>
 
 <div class="dashboard">
@@ -28,7 +28,9 @@
 </div>
 
 <style>
-  html, body, .dashboard {
+  html,
+  body,
+  .dashboard {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -74,25 +76,25 @@
   .basicStacts {
     grid-column: span 3;
     grid-row: span 4;
-    border: 2px solid red;
+    border: 1px solid rgb(77, 77, 77);
   }
 
   .DealsAndRev {
     grid-column: span 5;
     grid-row: span 4;
-    border: 2px solid red;
+    border: 1px solid rgb(77, 77, 77);
   }
 
   .CampaignPerfo {
     grid-column: span 5;
     grid-row: span 4;
-    border: 2px solid red;
+    border: 1px solid rgb(77, 77, 77);
   }
 
   .TopRevCh {
     grid-column: span 3;
     grid-row: span 4;
-    border: 2px solid red;
+    border: 1px ssolid rgb(77, 77, 77);
     display: flex;
     align-items: center;
     justify-content: center;

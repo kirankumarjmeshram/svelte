@@ -1,5 +1,4 @@
 <script>
-    import { Button, Col, Row } from '@sveltestrap/sveltestrap';
     let selectedCols = ["id", "campaign", "visitors", "contacts", "companies", "leads", "value"];
     let data = [
       { id: 1, campaign: "Campaign A", visitors: 500, contacts: 200, companies: 100, leads: 50, value: "$5000.00" },
@@ -96,6 +95,7 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
+      background-color: #151b21;
     }
   
     .header {
