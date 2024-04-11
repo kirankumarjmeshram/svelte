@@ -71,13 +71,15 @@
   .app-container {
     display: flex;
     height: 100vh;
+    padding: 2%;
+    background-color: #cdfeff;
   }
 
   .main-content {
     flex: 1;
     padding: 1rem;
-    background-color: rgb(42, 48, 61);
+    background-color: #121b1b;
     color: white;
-    /* Add other styles for the main content area */
+    border-radius: 0px 30px 30px 0px;
   }
 </style>

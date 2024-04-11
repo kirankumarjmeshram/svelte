@@ -58,7 +58,7 @@
   
   <div class="container">
     <div class="header">
-      <h1 class="title">Campaign Performance</h1>
+      <h5 class="title">Campaign Performance</h5>
       <div class="channels">
         <span>Channels:</span>
         <select class="dropdown">
@@ -95,7 +95,7 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #151b21;
+      background-color: #0d1515;
     }
   
     .header {
@@ -112,14 +112,18 @@
     .channels {
       display: flex;
       align-items: center;
+      
     }
   
     .channels span {
       margin-right: 10px;
+      
     }
   
     .dropdown {
       width: 150px;
+      background-color: #0d1515;
+      color: white;
     }
   
     .table {
@@ -145,7 +149,8 @@
     }
   
     .border-bottom {
-      border-bottom: 1px solid #dee2e6;
+      background-color: #121c1c;
+      color: #dee2e6;
     }
   </style>
   

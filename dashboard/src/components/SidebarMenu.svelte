@@ -12,7 +12,7 @@
 </script>
 
 <div class="sidebar">
-  <h2>
+  <h4 class="heading">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1.2em"
@@ -26,7 +26,7 @@
       /></svg
     >
     &nbsp; UNIFYDATA
-  </h2>
+  </h4>
   <ul class="sidebar_main">
     <li class="sidebar_el">
       <a on:click={selectComponent.bind(this, "Dashboard")} class="custom-link">
@@ -81,7 +81,8 @@
               d="M26.0006 40C26.0006 40 26.5003 35 30 32C33.4997 29 38.0007 29 38.0007 29"
             /></g
           ></svg
-        >Journeys
+        >
+        &nbsp; Journeys
       </a>
     </li>
     <li class="sidebar_el">
@@ -173,22 +174,26 @@
 </div>
 
 <style>
+    .heading{
+        padding: 1rem;
+    }
   .sidebar_main {
     padding-top: 2rem;
   }
   .sidebar {
-    width: 15%; /* Width of the outer component */
-    background-color: #413f3f;
+    width: 16%;
+    background-color: #0d1515;
     color: #fff;
     padding: 1rem;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    border-radius: 30px 0px 0px 30px;
   }
 
   .sidebar_el {
-    margin: 5%;
-    font-size: large;
+    margin: 4%;
+    font-size: medium;
   }
 
   .divider {

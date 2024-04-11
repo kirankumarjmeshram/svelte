@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import Chart from 'chart.js/auto';
 
-  const NUMBER_SALES = [2,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1,6,5,8,9,1];
-  const NUMBER_REVENUE = [200, 250, 500, 450, 300, 250, 500, 450, 300, 250, 500, 450, 300, 250, 500, 450, 300];
+  const NUMBER_SALES = [2,6,5,8,9,1,6,5,8,9,];
+  const NUMBER_REVENUE = [200, 250, 500, 450, 300, 250, 500, 450, 300];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   const maxLength = Math.max(NUMBER_REVENUE.length, NUMBER_SALES.length);
@@ -18,14 +18,14 @@
         label: 'Sales',
         data: NUMBER_SALES,
         borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: '#0a1515',
         yAxisID: 'y-axis-1'
       },
       {
         label: 'Revenue',
         data: NUMBER_REVENUE,
         borderColor: 'rgb(54, 162, 235)',
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        backgroundColor: '#0a1515',
         yAxisID: 'y-axis-2'
       }
     ]
@@ -124,7 +124,7 @@
 <style>
   canvas {
     width: 100%;
-    height: 400px; 
+    height: 100%; 
   }
 </style>
 
