@@ -1,51 +1,55 @@
 <script>
-  import { onMount } from 'svelte';
-  import SidebarMenu from '../components/SidebarMenu.svelte';
-  import Dashboard from '../components/Dashboard.svelte';
-  import RevenueAnalytics from '../components/RevenueAnalytics.svelte';
-  import Journeys from '../components/Journeys.svelte';
-  import Performance from '../components/Performance.svelte';
-  import DataPlatform from '../components/DataPlatform.svelte';
-  import Settings from '../components/Settings.svelte';
-  import Help from '../components/Help.svelte';
-  import Profile from '../components/Profile.svelte';
+  import CaseCreation from "../components/CaseCreation.svelte";
+  import { onMount } from "svelte";
+  import SidebarMenu from "../components/SidebarMenu.svelte";
+  import Dashboard from "../components/Dashboard.svelte";
+  import RevenueAnalytics from "../components/RevenueAnalytics.svelte";
+  import Journeys from "../components/Journeys.svelte";
+  import Performance from "../components/Performance.svelte";
+  import DataPlatform from "../components/DataPlatform.svelte";
+  import Settings from "../components/Settings.svelte";
+  import Help from "../components/Help.svelte";
+  import Profile from "../components/Profile.svelte";
 
-  let selectedComponent = Dashboard; 
+  let selectedComponent = Dashboard;
 
   function selectComponent(component) {
     // console.log(component.detail)
     switch (component.detail) {
-      case 'Dashboard':
-        console.log("Dashboard",component.detail)
+      case "Dashboard":
         selectedComponent = Dashboard;
         break;
 
-      case 'RevenueAnalytics':
+      case "RevenueAnalytics":
         selectedComponent = RevenueAnalytics;
         break;
 
-      case 'Journeys':
+      case "Journeys":
         selectedComponent = Journeys;
         break;
 
-      case 'Performance':
+      case "Performance":
         selectedComponent = Performance;
         break;
 
-      case 'DataPlatform':
+      case "DataPlatform":
         selectedComponent = DataPlatform;
         break;
 
-      case 'Settings':
+      case "Settings":
         selectedComponent = Settings;
         break;
 
-      case 'Help':
+      case "Help":
         selectedComponent = Help;
         break;
 
-      case 'Profile':
+      case "Profile":
         selectedComponent = Profile;
+        break;
+
+      case "CaseCreation":
+        selectedComponent = CaseCreation;
         break;
 
       default:
@@ -71,15 +75,15 @@
   .app-container {
     display: flex;
     height: 100vh;
-    padding: 2%;
-    background-color: #cdfeff;
+    /* padding: 2%; */
+    /* background-color: #cdfeff; */
   }
 
   .main-content {
     flex: 1;
-    padding: 1rem;
+    /* padding: 1rem; */
     background-color: #121b1b;
     color: white;
-    border-radius: 0px 30px 30px 0px;
+    /* border-radius: 0px 30px 30px 0px; */
   }
 </style>

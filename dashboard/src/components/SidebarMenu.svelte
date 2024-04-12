@@ -1,13 +1,14 @@
 <script>
   import { createEventDispatcher } from "svelte";
-
-  // Create an event dispatcher
+  let clickedComponent = null;
   const dispatch = createEventDispatcher();
 
   // Emit the selected component name
   function selectComponent(component) {
-    event.preventDefault();
+    // event.preventDefault();
     dispatch("selectComponent", component);
+    clickedComponent = component;
+
   }
 </script>
 
@@ -29,7 +30,7 @@
   </h4>
   <ul class="sidebar_main">
     <li class="sidebar_el">
-      <a on:click={selectComponent.bind(this, "Dashboard")} class="custom-link">
+      <a on:click={selectComponent.bind(this, "Dashboard")} class="custom-link {clickedComponent ==='Dashboard' ? 'selected':''}">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2em"
@@ -45,8 +46,28 @@
     </li>
     <li class="sidebar_el">
       <a
+        on:click={selectComponent.bind(this, "CaseCreation")}
+        class="custom-link  {clickedComponent ==='CaseCreation' ? 'selected':''}"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1.2em"
+          height="1.2em"
+          viewBox="0 0 32 32"
+          {...$$props}
+        >
+          <path
+            fill="white"
+            d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z"
+          />
+        </svg>
+        &nbsp;Case Creation
+      </a>
+    </li>
+    <li class="sidebar_el">
+      <a
         on:click={selectComponent.bind(this, "RevenueAnalytics")}
-        class="custom-link"
+        class="custom-link {clickedComponent ==='RevenueAnalytics' ? 'selected':''} "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +83,7 @@
       >
     </li>
     <li class="sidebar_el">
-      <a on:click={selectComponent.bind(this, "Journeys")} class="custom-link">
+      <a on:click={selectComponent.bind(this, "Journeys")} class="custom-link {clickedComponent ==='Journeys' ? 'selected':''}">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2em"
@@ -88,7 +109,7 @@
     <li class="sidebar_el">
       <a
         on:click={selectComponent.bind(this, "Performance")}
-        class="custom-link"
+        class="custom-link {clickedComponent ==='Performance' ? 'selected':''}"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +127,7 @@
     <li class="sidebar_el">
       <a
         on:click={selectComponent.bind(this, "DataPlatform")}
-        class="custom-link"
+        class="custom-link {clickedComponent ==='DataPlatform' ? 'selected':''}"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +144,7 @@
     </li>
     <hr class="divider" />
     <li class="sidebar_el">
-      <a on:click={selectComponent.bind(this, "Settings")} class="custom-link">
+      <a on:click={selectComponent.bind(this, "Settings")} class="custom-link {clickedComponent ==='Settings' ? 'selected':''}">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2em"
@@ -138,7 +159,7 @@
       >
     </li>
     <li class="sidebar_el">
-      <a on:click={selectComponent.bind(this, "Help")} class="custom-link">
+      <a on:click={selectComponent.bind(this, "Help")} class="custom-link {clickedComponent ==='Help' ? 'selected':''}">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2em"
@@ -154,7 +175,7 @@
     </li>
     <hr class="divider2" />
     <li class="sidebar_el">
-      <a on:click={selectComponent.bind(this, "Profile")} class="custom-link">
+      <a on:click={selectComponent.bind(this, "Profile")} class="custom-link {clickedComponent ==='Profile' ? 'selected':''}">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1.2em"
@@ -174,21 +195,21 @@
 </div>
 
 <style>
-    .heading{
-        padding: 1rem;
-    }
+  .heading {
+    padding: 1rem;
+  }
   .sidebar_main {
     padding-top: 2rem;
   }
   .sidebar {
-    width: 16%;
+    width: 15%;
     background-color: #0d1515;
     color: #fff;
     padding: 1rem;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    border-radius: 30px 0px 0px 30px;
+    /* border-radius: 30px 0px 0px 30px; */
   }
 
   .sidebar_el {
@@ -231,11 +252,11 @@
 
   .custom-link:hover,
   .custom-link:focus {
-    background-color: rgb(
-      180,
-      241,
-      214
-    ); /* Change background color on hover or focus */
+    background-color: rgb(178, 208, 201); /* Change background color on hover or focus */
     color: #000; /* Change text color to black */
+  }
+  .selected {
+    background-color: rgb(149, 205, 192);
+    color: #000;
   }
 </style>
