@@ -1,31 +1,35 @@
-<!-- CaseForm.svelte -->
 <script>
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
+  import axios from 'axios';
 
-  let caseDetail = {
-    title: "",
-    totalFiles: 0,
-    totalDocuments: 0,
-    lastUploadedDate: "",
-    lastUploadedTime: "",
-  };
+  let title = ''; 
 
-  function addCase() {
-    dispatch('add', caseDetail);
-    caseDetail = {
-      title: "",
-      totalFiles: 0,
-      totalDocuments: 0,
-      lastUploadedDate: "",
-      lastUploadedTime: "",
-    };
+  async function postData() {
+    try {
+      const response = await axios.post('http://127.0.0.1:5123/data', { title });
+
+      title = '';
+      
+      alert('Data posted successfully'); 
+    } catch (error) {
+      console.error(error);
+      alert('Failed to post data'); 
+    }
   }
-
 </script>
 
+<div class='container'>
+  <h2>Case Title</h2>
+  <form on:submit|preventDefault={postData}>
+    <label>
+      Title:
+      <input type="text" bind:value={title} />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
 <style>
-  .container{
+    .container{
     border: 1px solid #b9b8b8;
     padding: 1em;
     border-radius: 10px;
@@ -45,33 +49,10 @@
   }
   button {
     padding: 0.5em;
+    margin: 1em;
     background-color: green;
     color: white;
     border: none;
     cursor: pointer;
   }
 </style>
-
-<div class='container'>
-  <label>
-    Title:
-    <input bind:value={caseDetail.title} type="text" />
-  </label>
-  <label>
-    Total Files:
-    <input bind:value={caseDetail.totalFiles} type="number" />
-  </label>
-  <label>
-    Total Documents:
-    <input bind:value={caseDetail.totalDocuments} type="number" />
-  </label>
-  <label>
-    Last Uploaded Date:
-    <input bind:value={caseDetail.lastUploadedDate} type="date" />
-  </label>
-  <label>
-    Last Uploaded Time:
-    <input bind:value={caseDetail.lastUploadedTime} type="time" />
-  </label>
-  <button on:click={addCase}>Add</button>
-</div>
