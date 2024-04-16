@@ -1,8 +1,8 @@
 <script>
-  import CaseCreation from "../components/CaseCreation.svelte";
+  import CaseCreation from "./caseInfo/+page.svelte";
   import { onMount } from "svelte";
   import SidebarMenu from "../components/SidebarMenu.svelte";
-  import Dashboard from "../components/Dashboard.svelte";
+  import Dashboard from "../components/Dashboard.svelte"
   import RevenueAnalytics from "../components/RevenueAnalytics.svelte";
   import Journeys from "../components/Journeys.svelte";
   import Performance from "../components/Performance.svelte";
@@ -11,7 +11,7 @@
   import Help from "../components/Help.svelte";
   import Profile from "../components/Profile.svelte";
 
-  let selectedComponent = Dashboard;
+  let selectedComponent = CaseCreation;
 
   function selectComponent(component) {
     // console.log(component.detail)
@@ -53,11 +53,10 @@
         break;
 
       default:
-        selectedComponent = Dashboard;
+        selectedComponent = CaseCreation;
     }
   }
 
-  // Example: Load initial data or perform other actions on mount
   onMount(() => {
     // Your initialization logic here
   });
@@ -75,6 +74,7 @@
   .app-container {
     display: flex;
     height: 100vh;
+
     /* padding: 2%; */
     /* background-color: #cdfeff; */
   }
