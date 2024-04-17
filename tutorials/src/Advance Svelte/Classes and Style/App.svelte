@@ -7,6 +7,17 @@
     <!-- class="card {flipped?'flipped' : ''}" -->
     <!-- Shorthand class directive -->
     <!--we can use "class:flipped" on place of = class:flipped = {flipped} -->
+    <!-- Style directive
+        	<button
+		class="card"
+		style:transform={flipped ? 'rotateY(0)' : ''}
+		style:--bg-1="palegoldenrod"
+		style:--bg-2="black"
+		style:--bg-3="goldenrod"
+		on:click={() => flipped = !flipped}
+	>
+     -->
+
 	<button
 		class="card"
 		class:flipped
