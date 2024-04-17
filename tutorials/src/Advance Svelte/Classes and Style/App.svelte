@@ -5,9 +5,11 @@
 <div class="container">
 	Flip the card
     <!-- class="card {flipped?'flipped' : ''}" -->
+    <!-- Shorthand class directive -->
+    <!--we can use "class:flipped" on place of = class:flipped = {flipped} -->
 	<button
 		class="card"
-		class:flipped = {flipped}
+		class:flipped
 		on:click={() => flipped = !flipped}
 	>
 		<div class="front">
