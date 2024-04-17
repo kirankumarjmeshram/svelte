@@ -8,7 +8,7 @@
 
   onMount(async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5123/data/${caseId}`);
+      const response = await axios.get(`http://127.0.0.1:5323/data/${caseId}`);
       caseDetail = response.data;
     } catch (error) {
       console.error("Error fetching case data:", error);
@@ -31,6 +31,28 @@
     <p>Last Uploaded date: {caseDetail.lastUploadedDate}</p>
     <p>Last Uploaded Time: {caseDetail.lastUploadedTime}</p>
     <hr />
+    {#if caseDetail.totalFiles.length}
+      <div>
+        <table>
+          <thead>
+            <th>File Name</th>
+            <th>File Path</th>
+            <th>Size</th>
+            <th>Type</th>
+          </thead>
+          <tbody>
+            {#each caseDetail.totalFiles as data }
+              <tr>
+                <td>{data.filename}</td>
+                <td>{data.filepath}</td>
+                <td>{data.size/1000} kb</td>
+                <td>{data.type}</td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+    {/if}
   {:else}
     <p>Loading...</p>
   {/if}
@@ -51,5 +73,24 @@
   }
   .case-card .row h3 {
     flex: 1;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #f2f2f2;
   }
 </style>
