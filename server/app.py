@@ -3,22 +3,21 @@ from flask_pymongo import PyMongo
 from datetime import datetime
 from bson import json_util, ObjectId
 from werkzeug.utils import secure_filename
-
+import os
 from flask_cors import CORS
 
 app = Flask(__name__)
 
 CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/mydatabase"  
+app.config['UPLOAD_FOLDER'] = os.getcwd() + "/upload"
+print(app.config['UPLOAD_FOLDER'])
 mongo = PyMongo(app)
 
-@app.route('/',methods=["GET"])
+
+@app.route('/', methods=["GET"])
 def started():
     return "<h1>Case Server Started"
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 @app.route("/data", methods=["POST"])
@@ -35,7 +34,6 @@ def create_data():
     return jsonify({"message": "Data created successfully", "id": str(result.inserted_id)}), 201
 
 
-
 @app.route("/data", methods=["GET"])
 def get_all_data():
     data = list(mongo.db.data.find({}))[::-1]
@@ -43,6 +41,7 @@ def get_all_data():
         document['_id'] = str(document['_id'])
     json_data = json_util.dumps(data)
     return json_data, 200
+
 
 @app.route("/data/<id>", methods=["GET"])
 def get_data(id):
@@ -54,23 +53,23 @@ def get_data(id):
     else:
         return jsonify({"message": "Data not found"}), 404
 
+    
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'xlsx','xlsv'}
+
+
 @app.route("/data/<id>", methods=["PUT"])
 def update_data(id):
-    data = request.json
-    data["lastUploadedDate"] = datetime.now().strftime("%Y-%m-%d")
-    data["lastUploadedTime"] = datetime.now().strftime("%H:%M:%S")
-
-    # Check if the POST request has a file part
     if 'file' in request.files:
         file = request.files['file']
-        # If the user does not select a file, the browser submits an empty file without a filename
         if file.filename == '':
             return jsonify({"error": "No selected file"}), 400
         if file and allowed_file(file.filename):
+            print(file.filename)
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
-            # Update MongoDB document with file details
             file_details = {
                 "filename": filename,
                 "filepath": filepath,
@@ -87,6 +86,7 @@ def update_data(id):
     else:
         return jsonify({"error": "No file part in request"}), 400
 
+    
 @app.route("/data/<id>", methods=["DELETE"])
 def delete_data(id):
     result = mongo.db.data.delete_one({"_id": id})
@@ -95,5 +95,6 @@ def delete_data(id):
     else:
         return jsonify({"message": "Data not found"}), 404
 
+
 if __name__ == "__main__":
-    app.run(debug=True, port=5123)
+    app.run(debug=True, port=5323)
