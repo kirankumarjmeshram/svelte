@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation";
   import { formOpen } from './store.js';
   import UploadForm from './UploadForm.svelte';
-
+  import { caseId } from './store.js';
   export let caseDetail;
 
   function analyse() {
@@ -15,6 +15,7 @@
   }
 
   function openUploadForm() {
+      caseId.set(caseDetail._id)
       formOpen.set(true);
   }
 </script>
@@ -25,6 +26,7 @@
   <button class="new" on:click={getCaseInfo}>Info</button>
 </div>
 <hr />
+<p>Case id {caseDetail._id}</p>
 <b><p>Total files: {caseDetail.totalFiles.length}</p></b>
 <b><p>Total Document: {caseDetail.totalDocuments.length}</p></b>
 <p>Last Uploaded date: {caseDetail.lastUploadedDate}</p>
@@ -36,7 +38,7 @@
 </div>
 </div>
 
-<UploadForm />
+<UploadForm/>
 
 <style>
 .case-card {

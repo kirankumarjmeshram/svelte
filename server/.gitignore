@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+upload
 generated_json_files
 
 # Distribution / packaging
