@@ -1,12 +1,13 @@
 <script>
   import { goto } from "$app/navigation";
-  import { formOpen } from './store.js';
+  import { formOpen, caseId, title } from './store.js';
   import UploadForm from './UploadForm.svelte';
-  import { caseId } from './store.js';
   export let caseDetail;
 
-  function analyse() {
+  function openAnalyse() {
       window.alert("Analyse button clicked");
+      caseId.set(caseDetail._id)
+      formOpen.set(true);
   }
 
   function getCaseInfo() {
@@ -16,6 +17,7 @@
 
   function openUploadForm() {
       caseId.set(caseDetail._id)
+      title.set(caseDetail.title)
       formOpen.set(true);
   }
 </script>
@@ -34,10 +36,9 @@
 <hr />
 <div class="row">
   <button class="upload" on:click={openUploadForm}> Upload </button>
-  <button class="analyse" on:click={analyse}>Analyse</button>
+  <button class="analyse" on:click={openAnalyse}>Analyse</button>
 </div>
 </div>
-
 <UploadForm/>
 
 <style>

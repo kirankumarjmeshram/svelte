@@ -1,91 +1,51 @@
-<!-- <script>
-    import { formOpen, caseId } from './store.js';
-
-    let isOpen = false;
-    let files = [];
-
-    let currCaseId;
-    caseId.subscribe(value => currCaseId = value);
-    // console.log("currCaseId",currCaseId)
-
-    formOpen.subscribe(value => {
-        isOpen = value;
-    });
-
-    function openForm() {
-        console.log("Clicked on upload");
-        formOpen.set(true);
-    }
-
-
-    function closeForm() {
-        formOpen.set(false);
-        // isOpen = false;
-        files = []; // Clear the selected files
-    }
-
-    function handleFileChange(event) {
-        files = Array.from(event.target.files);
-    }
-
-    function handleUpload() {
-        console.log(files);
-        closeForm();
-    }
-</script> -->
 <script>
-    import { formOpen, caseId } from './store.js';
-    export let title;
+  import { formOpen, caseId, title } from "./store.js";
 
-    let isOpen = false;
-    let files = [];
+  let isOpen = false;
+  let files = [];
+  let caseTitle;
+  let currCaseId;
+  caseId.subscribe((value) => (currCaseId = value));
+  title.subscribe((value) => (caseTitle = value));
+  // console.log($caseId);
 
-    let currCaseId;
-    caseId.subscribe(value => currCaseId = value);
+  formOpen.subscribe((value) => {
+    isOpen = value;
+  });
 
-    formOpen.subscribe(value => {
-        isOpen = value;
+  function closeForm() {
+    formOpen.set(false);
+    files = [];
+  }
+
+  function handleFileChange(event) {
+    files = Array.from(event.target.files);
+  }
+
+  async function handleUpload() {
+    const data = new FormData();
+    files.forEach((file) => data.append("file", file));
+
+    const response = await fetch(`http://127.0.0.1:5323/data/${currCaseId}`, {
+      method: "PUT",
+      body: data,
     });
 
-    function openForm() {
-        // console.log("Clicked on upload");
-        formOpen.set(true);
+    if (response.ok) {
+      console.log("Files uploaded successfully");
+    } else {
+      console.error("Error uploading files");
     }
 
-    function closeForm() {
-        formOpen.set(false);
-        files = []; 
-    }
-
-    function handleFileChange(event) {
-        files = Array.from(event.target.files);
-    }
-
-    async function handleUpload() {
-        const data = new FormData();
-        files.forEach(file => data.append('file', file));
-
-        const response = await fetch(`http://127.0.0.1:5323/data/${currCaseId}`, {
-            method: 'PUT',
-            body: data
-        });
-
-        if (response.ok) {
-            console.log('Files uploaded successfully');
-        } else {
-            console.error('Error uploading files');
-        }
-
-        closeForm();
-    }
-
-
+    closeForm();
+  }
 </script>
+
 {#if isOpen}
   <div class="backdrop"></div>
   <div class="upload-form">
     <!-- <p>Case id {currCaseId}</p> -->
-    <p>Upload File in {title}</p>
+    <p>Upload File in {caseTitle}</p>
     <input type="file" multiple on:change={handleFileChange} />
     <button on:click={handleUpload}>Upload</button>
     <button on:click={closeForm}>Cancel</button>
