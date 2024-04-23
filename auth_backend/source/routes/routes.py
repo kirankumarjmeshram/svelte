@@ -1,10 +1,8 @@
 from flask import Blueprint, request, jsonify
 from ..controller import routes as route_controller
-from flask_jwt_extended import get_jwt_identity, jwt_required, JWTManager
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 routes = Blueprint('routes',__name__)
-
-# jwt = JWTManager()
 
 #route to create a case
 @routes.route('/create_case', methods=['POST','GET'])
@@ -21,29 +19,38 @@ def create_case():
         
         return result
     except Exception as error:
-        return jsonify({"Service":"Create case","message" : str(error)})
+        return jsonify({"Service":"Create case","message" : str(error)}), 500
 
 #route to list existing cases
 @routes.route('/cases', methods=['POST','GET'])
 def cases():
-    print("Cases function triggered")
-    result = route_controller.list_cases()
-
-    return result
+    try:
+        print("Cases function triggered")
+        result = route_controller.list_cases()
+        return result
+    except Exception as error:
+        return jsonify({"Service":"Cases","message" : str(error)})
 
 #route to upload data to a particular case
 @routes.route('/data_upload', methods=['POST','GET'])
-# @jwt_required()
+@jwt_required()
 def data_upload():
-    print("Data upload function triggered")
-    # user_cred = get_jwt_identity()
-    # print(user_cred,"user credentials")
-    uploaded_images = request.files.getlist('uploaded_images') if 'uploaded_images' in request.files else []
-    print(uploaded_images,"uploaded images")
-    return jsonify({'Service' : "Home page","Status" : True})
+    try:
+        print("Data upload function triggered")
+        user_cred = get_jwt_identity()
+        print(user_cred,"user credentials")
+        uploaded_images = request.files.getlist('uploaded_images') if 'uploaded_images' in request.files else []
+        print(uploaded_images,"uploaded images")
+        result = route_controller.data_upload_controller(uploaded_images,user_cred)
+        return result
+    except Exception as error:
+        return jsonify({"Service":"Data uplaod","message" : str(error)}), 500
 
 #route to analyse data 
 @routes.route('/analyse', methods=['POST','GET'])
 def analyse():
-    print("Analyse function triggered")
-    return jsonify({'Service' : "Analyse page","Status" : True})
+    try:
+        print("Analyse function triggered")
+        return jsonify({'Service' : "Analyse page","Status" : True})
+    except Exception as error:
+        return jsonify({"Service":"Analyse","message" : str(error)})

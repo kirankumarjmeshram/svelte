@@ -6,6 +6,7 @@ class Cases(Document):
     case_name                   = StringField(required=True)
     victim_images               = ListField()
     suspect_images              = ListField()
+    uploaded_data               = ListField()
 
     meta                        = {'db_alias' : 'MARVEL'}
 

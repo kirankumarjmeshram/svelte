@@ -66,3 +66,16 @@ def list_cases():
     all_documents = Cases.objects()
     cases = [doc.to_json() for doc in all_documents]
     return jsonify({"Service" : "Cases", "data" : cases}), 200
+
+def data_upload_controller(uploaded_data,user_cred):
+    try:
+        print("data upload controller fucntion is triggered")
+        current_directory = os.getcwd()
+        uploaded_data_f = os.path.join(current_directory,current_app.config['UPLOADED_DATA_FOLDER'])
+        result = save_files(uploaded_data,uploaded_data_f)
+        print(result,"result for ")
+        user_case = Cases.objects(user_id=user_cred).update(set__uploaded_data=result)
+        print(user_case,"result of user ")
+        return jsonify({"Service" : "Data upload","Status" : True})
+    except Exception as error:
+        return jsonify({"Service" : "Data upload","Message" : str(error)})
