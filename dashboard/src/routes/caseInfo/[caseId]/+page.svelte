@@ -5,10 +5,12 @@
 
   let caseId = $page.params.caseId;
   let caseDetail = null;
+  // const url = import.meta.env.API_URI;
+  // console.log(url)
 
   onMount(async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5323/data/${caseId}`);
+      const response = await axios.get(`http://127.0.0.1:5124/data/${caseId}`);
       caseDetail = response.data;
     } catch (error) {
       console.error("Error fetching case data:", error);

@@ -9,7 +9,7 @@
   
     async function fetchData() {
       try {
-        const response = await axios.get('http://127.0.0.1:5323/data');
+        const response = await axios.get('http://127.0.0.1:5124/data');
         cases = response.data;
       } catch (error) {
         console.error(error);

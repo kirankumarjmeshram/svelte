@@ -1,13 +1,15 @@
 <script>
   import { goto } from "$app/navigation";
-  import { formOpen, caseId, title } from './store.js';
+  import { formOpen, caseId, title, analysisOpen } from './store.js';
   import UploadForm from './UploadForm.svelte';
+  import CaseAnalysis from "./CaseAnalysis.svelte";
   export let caseDetail;
 
   function openAnalyse() {
-      window.alert("Analyse button clicked");
-      caseId.set(caseDetail._id)
-      formOpen.set(true);
+      // window.alert("Analyse button clicked");
+      // caseId.set(caseDetail._id)
+      analysisOpen.set(true)
+      formOpen.set(false);
   }
 
   function getCaseInfo() {
@@ -40,6 +42,7 @@
 </div>
 </div>
 <UploadForm/>
+<!-- <CaseAnalysis/> -->
 
 <style>
 .case-card {
