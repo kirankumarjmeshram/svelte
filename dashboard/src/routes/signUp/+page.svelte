@@ -6,7 +6,6 @@
     let password = '';
     let passcode = '';
     let errorMessage = '';
-//   http://192.168.108.80:5000
     const signUp = async () => {
       try {
         const response = await fetch('http://127.0.0.1:5000/register', {
@@ -16,8 +15,7 @@
         });
         const data = await response.json();
         if (data.message === 'User registered, contact admin for approval') {
-          // Handle successful registration
-          goto('/signIn'); // Redirect to sign-in page
+          goto('/signIn'); 
         } else {
           errorMessage = data.message;
         }

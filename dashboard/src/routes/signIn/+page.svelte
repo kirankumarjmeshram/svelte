@@ -1,4 +1,3 @@
-<!-- SignIn.svelte -->
 <script>
   import { goto } from "$app/navigation";
 
@@ -12,14 +11,13 @@
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}` // Include JWT token from localStorage
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({ username, password }),
       });
       const data = await response.json();
       if (response.ok) {
-        // Handle successful login
-        goto("/caseInfo"); // Redirect to /caseInfo page
+        goto("/caseInfo");
       } else {
         errorMessage = data.message || "An error occurred while signing in.";
       }
