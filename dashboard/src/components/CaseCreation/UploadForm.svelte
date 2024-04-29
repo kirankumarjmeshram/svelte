@@ -26,7 +26,7 @@
     const data = new FormData();
     files.forEach((file) => data.append("file", file));
 
-    const response = await fetch(`http://127.0.0.1:5323/data/${currCaseId}`, {
+    const response = await fetch(`http://127.0.0.1:5124/data/${currCaseId}`, {
       method: "PUT",
       body: data,
     });
