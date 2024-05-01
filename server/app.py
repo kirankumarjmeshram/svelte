@@ -5,6 +5,10 @@ from bson import json_util, ObjectId
 from werkzeug.utils import secure_filename
 import os
 from flask_cors import CORS
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+import uuid
+from mongoengine import Document, StringField, connect
 
 app = Flask(__name__)
 
@@ -13,6 +17,20 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/mydatabase"
 app.config['UPLOAD_FOLDER'] = os.getcwd() + "/upload"
 print(app.config['UPLOAD_FOLDER'])
 mongo = PyMongo(app)
+
+app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Change this!
+jwt = JWTManager(app)
+
+connect(alias='MARVEL', host='mongodb://localhost:27017/mydatabase')
+
+
+class Users(Document):
+    _id = StringField(primary_key=True, required=False)
+    username = StringField(required=True)
+    hashed_pwd = StringField()
+    status = StringField()
+
+    meta = {'db_alias': 'MARVEL'}
 
 
 @app.route('/', methods=["GET"])
@@ -45,7 +63,6 @@ def get_all_data():
 
 @app.route("/data/<id>", methods=["GET"])
 def get_data(id):
-    # Convert the id string to an ObjectId
     obj_id = ObjectId(id)
     data = mongo.db.data.find_one({"_id": obj_id}, {"_id": 0})
     if data:
@@ -56,7 +73,7 @@ def get_data(id):
     
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'xlsx','xlsv'}
+           filename.rsplit('.', 1)[1].lower() in {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'xlsx', 'xlsv'}
 
 
 @app.route("/data/<id>", methods=["PUT"])
@@ -76,7 +93,10 @@ def update_data(id):
                 "size": os.path.getsize(filepath),
                 "type": file.content_type
             }
-            result = mongo.db.data.update_one({"_id": ObjectId(id)}, {"$push": {"totalFiles": file_details}})
+            result = mongo.db.data.update_one({"_id": ObjectId(id)}, {"$push": {"totalFiles": file_details}, "$set":{
+                                                                        "lastUploadedDate" : datetime.now().strftime("%Y-%m-%d"),
+                                                                        "lastUploadedTime" : datetime.now().strftime("%H:%M:%S")
+                                                                    }})
             if result.modified_count:
                 return jsonify({"message": "Data updated successfully"}), 200
             else:
@@ -94,6 +114,49 @@ def delete_data(id):
         return jsonify({"message": "Data deleted successfully"}), 200
     else:
         return jsonify({"message": "Data not found"}), 404
+
+# Authentication Routes
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"message": "Username and password are required"}), 400
+
+    user = Users.objects(username=username).first()
+    if not user or not check_password_hash(user.hashed_pwd, password):
+        return jsonify({"message": "Invalid username or password"}), 401
+
+    access_token = create_access_token(identity=user._id)
+    return jsonify(access_token=access_token), 200
+
+
+@app.route("/register", methods=["POST"])
+def register():
+    data = request.json
+    username = data.get("username")
+    password = data.get("password")
+    passcode = data.get("passcode")
+
+    if passcode != "12345":
+        return jsonify({"message": "Invalid passcode"}), 400
+
+    if not username or not password:
+        return jsonify({"message": "Username and password are required"}), 400
+
+    if Users.objects(username=username).first():
+        return jsonify({"message": "Username already exists"}), 400
+
+    hashed_password = generate_password_hash(password)
+    user_id = str(uuid.uuid4())
+    user = Users(_id=user_id, username=username, hashed_pwd=hashed_password)
+    user.save()
+
+    return jsonify({"message": "User created successfully", "user_id": user_id}), 201
 
 
 if __name__ == "__main__":
