@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 import os
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity,  verify_jwt_in_request, decode_token
 import uuid
 from mongoengine import Document, StringField, connect
 
@@ -38,18 +38,39 @@ def started():
     return "<h1>Case Server Started"
 
 
+@app.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    # Extract token from request headers
+    auth_header = request.headers.get('Authorization')
+    token = auth_header.split()[1]  # Extract token part after 'Bearer'
+    
+    # Decode and verify token
+    decoded_token = decode_token(token)
+    
+    # Access token payload
+    user_id = decoded_token['identity']
+    # Other token claims may be accessed similarly
+    
+    return jsonify(message="Token is valid", user_id=user_id), 200
+
+
 @app.route("/data", methods=["POST"])
 def create_data():
+    verify_jwt_in_request()  
+    current_user_id = get_jwt_identity() 
     data = request.json
     title = data.get("title") 
     if title is None:
         return jsonify({"error": "Title is required"}), 400  
     data.setdefault("totalFiles", [])
+    data["created_by"] = current_user_id
     data.setdefault("totalDocuments", [])  
     data["lastUploadedDate"] = datetime.now().strftime("%Y-%m-%d")
     data["lastUploadedTime"] = datetime.now().strftime("%H:%M:%S")
     result = mongo.db.data.insert_one(data)
     return jsonify({"message": "Data created successfully", "id": str(result.inserted_id)}), 201
+
 
 
 @app.route("/data", methods=["GET"])

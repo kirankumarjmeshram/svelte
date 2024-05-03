@@ -6,25 +6,26 @@
   let errorMessage = "";
 
   const signIn = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:5124/login", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        goto("/caseInfo");
-      } else {
-        errorMessage = data.message || "An error occurred while signing in.";
-      }
-    } catch (error) {
-      errorMessage = "An error occurred while signing in.";
+  try {
+    const response = await fetch("http://127.0.0.1:5124/login", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      // Set the JWT token in localStorage
+      localStorage.setItem("token", data.access_token);
+      goto("/caseInfo");
+    } else {
+      errorMessage = data.message || "An error occurred while signing in.";
     }
-  };
+  } catch (error) {
+    errorMessage = "An error occurred while signing in.";
+  }
+};
 </script>
 
 <form on:submit|preventDefault={signIn}>

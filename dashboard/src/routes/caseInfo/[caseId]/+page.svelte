@@ -32,6 +32,7 @@
     <b><p>Total Document: {caseDetail.totalDocuments.length}</p></b>
     <p>Last Uploaded date: {caseDetail.lastUploadedDate}</p>
     <p>Last Uploaded Time: {caseDetail.lastUploadedTime}</p>
+    <p>created_by : {caseDetail.created_by ?caseDetail.created_by :'admin'}</p>
     <hr />
     {#if caseDetail.totalFiles.length}
       <div>

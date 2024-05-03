@@ -2,10 +2,16 @@
   import axios from 'axios';
 
   let title = ''; 
+  let token = localStorage.getItem("token"); // Assuming the token is stored in localStorage
+  console.log(token)
 
   async function postData() {
     try {
-      const response = await axios.post('http://127.0.0.1:5124/data', { title });
+      const response = await axios.post('http://127.0.0.1:5124/data', { title },{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
       title = '';
       
