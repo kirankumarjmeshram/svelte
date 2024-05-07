@@ -1,1 +1,4 @@
-<h1>Hello World</h1>
+<script>
+    import App from "../component/named_slot/App.svelte";
+</script>
+<App/>

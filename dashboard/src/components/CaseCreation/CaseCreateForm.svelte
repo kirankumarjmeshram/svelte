@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import axios from 'axios';
 
   let title = ''; 
@@ -8,6 +8,40 @@
   async function postData() {
     try {
       const response = await axios.post('http://127.0.0.1:5124/data', { title },{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      title = '';
+      
+      alert('Data posted successfully'); 
+    } catch (error) {
+      console.error(error);
+      alert('Failed to post data'); 
+    }
+  }
+</script>
+
+<div class='container'>
+  <h2>Case Title</h2>
+  <form on:submit|preventDefault={postData}>
+    <label>
+      Title:
+      <input type="text" bind:value={title} />
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</div> -->
+<script>
+  import axios from 'axios';
+
+  let title = ''; 
+
+  async function postData() {
+    let token = localStorage.getItem("token"); // Retrieve token from localStorage
+    try {
+      const response = await axios.post('http://127.0.0.1:5124/data', { title }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
