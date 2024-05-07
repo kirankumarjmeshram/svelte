@@ -41,18 +41,35 @@ def started():
 @app.route('/protected', methods=['GET'])
 @jwt_required()
 def protected():
-    # Extract token from request headers
-    auth_header = request.headers.get('Authorization')
-    token = auth_header.split()[1]  # Extract token part after 'Bearer'
-    
-    # Decode and verify token
-    decoded_token = decode_token(token)
-    
-    # Access token payload
-    user_id = decoded_token['identity']
-    # Other token claims may be accessed similarly
-    
-    return jsonify(message="Token is valid", user_id=user_id), 200
+    try:
+        # Extract user identity from JWT token
+        current_user_id = get_jwt_identity()
+
+        # Debugging: Print received token
+        auth_header = request.headers.get('Authorization')
+        token = auth_header.split()[1]  # Extract token part after 'Bearer'
+        print("Received token:", token)
+
+        # Verify and decode token to inspect payload
+        decoded_token = decode_token(token)
+        print("Decoded token payload:", decoded_token)
+
+        # Respond with success message and user identity
+        return jsonify(message="Token is valid", user_id=current_user_id), 200
+
+    except Exception as e:
+        # Handle any errors or exceptions
+        print("Error:", str(e))
+        return jsonify(error="An error occurred while processing the request"), 500
+
+# @app.route('/protected', methods=['GET'])
+# @jwt_required()
+# def protected():
+#     auth_header = request.headers.get('Authorization')
+#     token = auth_header.split()[1]
+#     decoded_token = decode_token(token)
+#     user_id = decoded_token['identity']
+#     return jsonify(message="Token is valid", user_id=user_id), 200
 
 
 @app.route("/data", methods=["POST"])
