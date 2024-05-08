@@ -1,0 +1,110 @@
+[
+  {
+    "source_number": "7559174947",
+    "destination_number": "9322561882",
+    "call_type": "call_in",
+    "date": "23-10-2023",
+    "time": "21:58:18",
+    "first_cgid": "404-90-6517-",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AD-INDBNK",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "21:58:38",
+    "first_cgid": "231646979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "BT-INDBNK",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "21:58:39",
+    "first_cgid": "231646979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "stris_out",
+    "date": "23-10-2023",
+    "time": "22:34:52",
+    "first_cgid": "206046979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "22:34:53",
+    "first_cgid": null,
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "22:34:54",
+    "first_cgid": "206046979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "22:53:17",
+    "first_cgid": "231646979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "22:53:18",
+    "first_cgid": "231646979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7559174947",
+    "destination_number": "AZ-AIRTEL",
+    "call_type": "sms_out",
+    "date": "23-10-2023",
+    "time": "22:53:19",
+    "first_cgid": "231646979",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7666536657",
+    "destination_number": "7385167231",
+    "call_type": "call_out",
+    "date": "24-10-2023",
+    "time": "04:02:21",
+    "first_cgid": "404-90-6517-",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7666536657",
+    "destination_number": "AX-unionB",
+    "call_type": "sms_out",
+    "date": "24-10-2023",
+    "time": "04:27:46",
+    "first_cgid": "404-90-6517-",
+    "Provider": "airtel"
+  },
+  {
+    "source_number": "7666536657",
+    "destination_number": "AX-UNIONB",
+    "call_type": "sms_out",
+    "date": "24-10-2023",
+    "time": "04:28:06",
+    "first_cgid": "404-90-6517-",
+    "Provider": "airtel"
+  }
+]
