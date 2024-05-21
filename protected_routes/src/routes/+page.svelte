@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>his will be our protected page</h1>
+<form action="./logout" method="POST">
+    <button>Log Out</button>
+</form>
