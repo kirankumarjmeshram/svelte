@@ -22,38 +22,77 @@ client = MongoClient(app.config['MONGO_URI'])
 app.db = client[app.config['MONGO_DBNAME']]
 
 
+# @app.route('/users', methods=['POST'])
+# def signup():
+#     # coll = db['users']
+#     data = request.get_json()
+#     email = data.get('email')
+#     password = data.get('password')
+#     name = data.get('name')
+#     print(list(data))
+
+#     if User.find_by_email(email):
+#         return jsonify({'error':'User already exists'}), 400
+
+#     # if coll.find_one({'email':email}):
+#     #     return jsonify({'error':'User already exists'}), 400
+#     # coll.insert_one({
+#     #     'email' : email,
+#     #     'name' : name,
+#     #     'password' : generate_password_hash(password),
+#     # })
+#     new_user = User(email=email, name=name, password=password)
+#     new_user.save()
+#     response = {
+#         'user':{
+#             'id':new_user.id,
+#             'email':new_user.email,
+#             'name':new_user.name
+#         }
+#     }
+
+#     res = make_response(jsonify(response), 200)
+#     res.headers['Authorization'] = new_user.generate_auth_token()
+#     return res
+#     # return jsonify({'msg' : 'user creation done.....!'})
+
 @app.route('/users', methods=['POST'])
 def signup():
-    # coll = db['users']
-    data = request.get_json()
-    email = data.get('email')
-    password = data.get('password')
-    name = data.get('name')
+    try:
+        #Received data:  {'user': {'email': 'kirankumar1@gmail.com', 'password': '123', 'name': 'kkd'}}
+        #Received data:  None None None
+        data = request.get_json()
+        print("Received data: ",data)
+        email = data.get('email')
+        password = data.get('password')
+        name = data.get('name')
+        print("Received data: ",email, password, name)
 
-    if User.find_by_email(email):
-        return jsonify({'error':'User already exists'}), 400
+        if not email or not password:
+            return jsonify({'error': 'Email and password are required.'}), 400
 
-    # if coll.find_one({'email':email}):
-    #     return jsonify({'error':'User already exists'}), 400
-    # coll.insert_one({
-    #     'email' : email,
-    #     'name' : name,
-    #     'password' : generate_password_hash(password),
-    # })
-    new_user = User(email=email, name=name, password=password)
-    new_user.save()
-    response = {
-        'user':{
-            'id':new_user.id,
-            'email':new_user.email,
-            'name':new_user.name
+        if User.find_by_email(email):
+            return jsonify({'error': 'User already exists.'}), 400
+
+        new_user = User(email=email, name=name, password=password)
+        new_user.save()
+
+        response = {
+            'user': {
+                'id': str(new_user.id),
+                'email': new_user.email,
+                'name': new_user.name
+            }
         }
-    }
 
-    res = make_response(jsonify(response), 200)
-    res.headers['Authorization'] = new_user.generate_auth_token()
-    return res
-    # return jsonify({'msg' : 'user creation done.....!'})
+        res = make_response(jsonify(response), 200)
+        res.headers['Authorization'] = new_user.generate_auth_token()
+        return res
+
+    except Exception as e:
+        print(f"Error creating user: {e}")
+        return jsonify({'error': 'An unknown error occurred.'}), 500
+
 
 @app.route('/users/sign_in', methods=['POST'])
 def signin():

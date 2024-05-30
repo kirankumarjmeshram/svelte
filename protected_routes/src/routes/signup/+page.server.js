@@ -4,6 +4,7 @@ import { redirect } from "@sveltejs/kit";
 export const actions = {
     default: async ({cookies, request, fetch}) => {
         const data = await request.formData()
+
         const email = data.get('email')
         const password = data.get('password')
         const name = data.get('name')
@@ -22,18 +23,22 @@ export const actions = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user:{
-                    email,
-                    password,
-                    name
-                }
+                // user:{
+                //     email,
+                //     password,
+                //     name
+                // }
+                email,
+                password,
+                name
             })
         })
 
     if(response.ok) {
         const data = await response.json()
-        cookies.set('user', JSON.stringify(data.user))
-        cookies.set('jwt', response.headers.get('Authorization'))
+        // cookies.set('user', JSON.stringify(data.user))
+        cookies.set('user', JSON.stringify(data.user),{path: '/'})
+        cookies.set('jwt', response.headers.get('Authorization'),{path: '/'})
         let obj = {
             ...data,
             jwt: response.headers.get('Authorization')
