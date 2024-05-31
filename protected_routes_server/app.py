@@ -62,11 +62,11 @@ def signup():
         #Received data:  {'user': {'email': 'kirankumar1@gmail.com', 'password': '123', 'name': 'kkd'}}
         #Received data:  None None None
         data = request.get_json()
-        print("Received data: ",data)
+        # print("Received data: ",data)
         email = data.get('email')
         password = data.get('password')
         name = data.get('name')
-        print("Received data: ",email, password, name)
+        # print("Received data: ",email, password, name)
 
         if not email or not password:
             return jsonify({'error': 'Email and password are required.'}), 400
@@ -100,9 +100,10 @@ def signin():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
+    print("Email",email,"password",password)
 
     user = User.find_by_email(email)
-
+    print("data",data)
 
     # user = User.find_by_email(email)
     # # user = coll.find_one({'email':email})

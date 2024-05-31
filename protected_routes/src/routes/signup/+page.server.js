@@ -39,7 +39,7 @@ export const actions = {
         // cookies.set('user', JSON.stringify(data.user))
         cookies.set('user', JSON.stringify(data.user),{path: '/'})
         cookies.set('jwt', response.headers.get('Authorization'),{path: '/'})
-        console.log(response.headers.get('Authorization'))
+        // console.log(response.headers.get('Authorization'))
         let obj = {
             ...data,
             jwt: response.headers.get('Authorization')
