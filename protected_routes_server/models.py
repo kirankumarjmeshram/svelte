@@ -11,7 +11,6 @@ class User:
         self.email = email
         self.name = name
         if password:
-            # self.password_hash = generate_password_hash(password)
             self.set_password(password)
         self.id = _id
         self.db_password_hash = db_password_hash
@@ -43,13 +42,14 @@ class User:
         #     )
         # return None
     
-    
     def save(self):
+        # print("password_hash",self.password_hash)
         user_data = {
             'email': self.email,
             'name': self.name,
-            'password_hash': self.db_password_hash
+            'password_hash': self.password_hash
         }
+
         if self.id:
             app.db.users.update_one({'_id':ObjectId(self.id)}, {'$set': user_data})
         else:
