@@ -1,4 +1,4 @@
-import { user } from "$lib/stores/user";
+import { user } from "$lib/stores/user.js";
 import { redirect } from "@sveltejs/kit";
 
 export const actions = {
@@ -44,7 +44,7 @@ export const actions = {
             ...data,
             jwt: response.headers.get('Authorization')
         }
-        user.set(obj)
+        user.set(JSON.parse(obj))
 
         throw redirect(302, '/')
     }else{

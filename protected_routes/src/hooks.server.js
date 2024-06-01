@@ -17,7 +17,7 @@ const public_path = [
 // function to verify if the request path is inside the public_paths array
 function isPathAllowed(path) {
     return public_path.some(allowedPath =>
-        path === allowedPath || path.startWith(+'/')
+        path === allowedPath || path.startsWith(+'/')
     )
 }
 
@@ -25,7 +25,7 @@ export const handle = async ({event, resolve}) =>{
     let user = null;
     // check if the cookie exist, and if exists, parse it to the user variable
     if(event.cookies.get('user') !== undefined && event.cookies.get('user') !== null) {
-        user = JSON.parse(event.cookies.get(user))
+        user = JSON.parse(event.cookies.get('user'))
     }
     
     const url = new URL(event.request.url);

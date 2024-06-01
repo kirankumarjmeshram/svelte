@@ -1,4 +1,4 @@
-import { user } from "$lib/stores/user";
+import { user } from "$lib/stores/user.js";
 import { redirect } from "@sveltejs/kit";
 
 export const actions = {
@@ -37,6 +37,13 @@ export const actions = {
             }
 
             user.set(obj)
+            // console.log(obj)
+            // let userdata;
+            // user.subscribe((value)=>{
+            //     userdata = value
+            // })
+            // console.log("userdata2",userdata)
+            
 
             throw redirect(302, '/')
         }else{
