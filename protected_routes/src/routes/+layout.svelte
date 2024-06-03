@@ -6,8 +6,6 @@
     })
     // console.log("userdata",userdata)
     
-
-
 </script>
 
 <h1>User info : </h1>
